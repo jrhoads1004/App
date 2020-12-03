@@ -42,6 +42,14 @@ with open(jsonpath) as datafile:
     else:
         flightCollection.insert_one(air_data)
         
+jsonpath = os.path.join("data", "Airport_Output.json")
+with open(jsonpath) as datafile:
+    airportOut = json.load(datafile)
+    if isinstance(airportOut, list):
+        flightCollection.insert_many(airportOut)
+    else:
+        flightCollection.insert_one(airportOut)
+        
 @app.route("/")
 def home():
     flightCollection = list(flight.db.find())
