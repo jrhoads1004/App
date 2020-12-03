@@ -41,21 +41,24 @@ with open(jsonpath) as datafile:
         flightCollection.insert_many(air_data)
     else:
         flightCollection.insert_one(air_data)
+        
+@app.route("/")
+def home():
+    flightCollection = list(flight.db.find())
+    return render_template("index.html", flightData=flightCollection)
+        
 # Dump json into Database
 @app.route('/users')
 def users():
     users = flight.find()
     resp = json.dumps(users)
     return resp
+
 #Pull javascript Data to run with flask
 @app.route('/data')
 def get_javascript_data(json_from_csv):
     return json.loads(json_from_csv)[0]       
 
-@app.route("/")
-def home():
-    flightData = list(flight.db.find())
-    return render_template("index.html", flightData=flightData)
 
 def create_csv(text):
     unique_id = str(uuid.uuid4())
