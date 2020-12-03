@@ -1,4 +1,7 @@
 import io
+import pandas as pd
+import sys
+import csv
 import os
 import uuid
 import json
@@ -17,27 +20,42 @@ from flask import (
     render_template,
     jsonify,
     request,
-    redirect)
+    redirect,)
+import bson
+
 
 app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app, uri="mongodb://localhost:27017/flight")
 
+# Call the Database and Collection
+flight = mongo.db
+flightCollection = flight.flightData
 
-#create flight_data collection into flight_db
+#loaded json to Mongo, json created from a df using pandas to clean a csv
+jsonpath = os.path.join("data", "airports.json")
+with open(jsonpath) as datafile:
+    air_data = json.load(datafile)
+    if isinstance(air_data, list):
+        flightCollection.insert_many(air_data)
+    else:
+        flightCollection.insert_one(air_data)
+# Dump json into Database
+@app.route('/users')
+def users():
+    users = flight.find()
+    resp = json.dumps(users)
+    return resp
+#Pull javascript Data to run with flask
+@app.route('/data')
+def get_javascript_data(json_from_csv):
+    return json.loads(json_from_csv)[0]       
 
-
-@app.route("/" )
+@app.route("/")
 def home():
-    flightData = mongo.db.flightData
+    flightData = list(flight.db.find())
     return render_template("index.html", flightData=flightData)
-    
-def javascript_data():
-    jsdata = request.form['flightData']
-    unique_id = create_csv(jsdata)
-    params = { 'uuid' : unique_id }
-    return params
 
 def create_csv(text):
     unique_id = str(uuid.uuid4())
@@ -49,18 +67,9 @@ def get_file_content(uuid):
     with open(uuid+'.csv', 'r') as file:
         return file.read()
     
+   
 
     return redirect("/", code=302)
 
 if __name__=="__main__":
     app.run(debug=True)
-#Update results (insert or append if existing)
-    #flight_data.update({},flight_results, upsert=True)
-    
-    #Save data into a listing
-    
-
-    #Render results into html
-    #return render_template("index.html", mars_data=mars_data)
-
-
