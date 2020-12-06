@@ -26,12 +26,12 @@ app=Flask(__name__)
 # Use PyMongo to establish Mongo connection
 
 try:
-    uri = os.environ["AUTH0_CLIENT_ID"]
+    uri = os.environ["REDISCLOUD_URL"]
     
 except KeyError:
     uri = "mongodb://localhost:27017/flight"
     
-app.config["mongodb://e8R7yNo29fxz3Q05T5PHEMyPlER01de6"] = uri
+app.config["redis://default:e1OnS3VMKFdlTUc8XmYH6yZ3h6zEbYq3@redis-13330.c52.us-east-1-4.ec2.cloud.redislabs.com:13330"] = uri
     
 mongo = PyMongo(app, uri)
 
