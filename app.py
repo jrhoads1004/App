@@ -24,14 +24,14 @@ app=Flask(__name__)
 # Use PyMongo to establish Mongo connection
 
 try:
-    uri = os.environ["MONGODB_URI"]
+    uri = os.environ["YUGABYTE_CLOUD_DATABASE_URL"]
     
 except KeyError:
-    uri = "mongodb://localhost:27017/admin"
+    uri = "postgres://admin:yhuvm0c2@35.247.31.132:22301/yugabyte"
 
 mongo = PyMongo(app, uri)
    
-app.config["mongodb://localhost:27017"] = uri
+app.config["postgres://admin:yhuvm0c2@35.247.31.132:22301/yugabyte"] = uri
 
 
 
