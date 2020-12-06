@@ -1,14 +1,9 @@
 import io
-import pandas as pd
 import sys
 import csv
 import os
 import uuid
 import json
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import numpy as np
-import pymongo
 import flask_pymongo
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
@@ -24,10 +19,22 @@ from flask import (
 import bson
 
 
+
+
 app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
+
+try:
+    db_uri = os.environ["DATABASE URI"]
+    
+except KeyError:
+    db_uri = "mongodb://localhost:27017/flight"
+    
+app.config["DATABASE URI"] = db_uri
+    
 mongo = PyMongo(app, uri="mongodb://localhost:27017/flight")
+
 
 # Call the Database and Collection
 flight = mongo.db
