@@ -26,7 +26,7 @@ app=Flask(__name__)
 # Use PyMongo to establish Mongo connection
 
 try:
-    uri = os.environ["DATABASE_URI"]
+uri = os.environ["AUTH0_CLIENT_ID"]
     
 except KeyError:
     uri = "mongodb://localhost:27017/flight"
