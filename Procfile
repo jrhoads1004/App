@@ -1,2 +1,2 @@
-web: gunicorn flightcrime:app
+web: gunicorn app:flightcrime
 web: gunicorn flightcrime.wsgi
