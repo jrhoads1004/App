@@ -42,8 +42,8 @@ with open(jsonpath) as datafile:
     else:
         flightCollection.insert_one(air_data)
         
-jsonpath = os.path.join("data", "Airport_Output.json")
-with open(jsonpath) as datafile:
+jsonpathO = os.path.join("data", "Airport_Output.json")
+with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
         flightCollection.insert_many(airportOut)
