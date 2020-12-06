@@ -30,9 +30,11 @@ try:
     
 except KeyError:
     uri = "mongodb://localhost:27017/flight"
-    
+
+   
 app.config["redis://default:e1OnS3VMKFdlTUc8XmYH6yZ3h6zEbYq3@redis-13330.c52.us-east-1-4.ec2.cloud.redislabs.com:13330"] = uri
-    
+
+
 mongo = PyMongo(app, uri)
 
 # Call the Database and Collection
