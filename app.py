@@ -27,7 +27,7 @@ try:
     uri = os.environ["MONGODB_URI"]
     
 except KeyError:
-    uri = "mongodb://localhost:27017/flight"
+    uri = "mongodb://localhost:27017/admin"
 
 mongo = PyMongo(app, uri)
    
@@ -45,8 +45,8 @@ app.config["mongodb://localhost:27017"] = uri
         
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
-flight = mongo.db
-flightPorts = flight.flightData
+admin = mongo.db
+flightPorts = admin.flightData
 
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
@@ -56,8 +56,8 @@ with open(jsonpath) as datafile:
     else:
         flightPorts.insert_one(air_data)
         
-flight = mongo.db
-flightOutput = flight.flightData
+admin = mongo.db
+flightOutput = admin.flightData
 
 jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
@@ -105,7 +105,7 @@ def home():
 
 if __name__=="__main__":
     client = MongoClient()
-    db = client.flight
+    db = client.admin
     collection = db.flightData
     cursor = collection.find({})
     # with open('collection.json', 'w') as file:
