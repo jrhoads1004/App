@@ -29,11 +29,12 @@ try:
 except KeyError:
     uri = "mongodb://localhost:27017/flight"
 
+mongo = PyMongo(app, uri)
    
 app.config["mongodb://localhost:27017"] = uri
 
 
-mongo = PyMongo(app, uri)
+
 
 # Call the Database and Collection
 # @app.route("/")
