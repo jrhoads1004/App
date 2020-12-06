@@ -26,15 +26,14 @@ app=Flask(__name__)
 # Use PyMongo to establish Mongo connection
 
 try:
-    db_uri = os.environ["DATABASE URI"]
+    uri = os.environ["DATABASE_URI"]
     
 except KeyError:
-    db_uri = "mongodb://localhost:27017/flight"
+    uri = "mongodb://localhost:27017/flight"
     
-app.config["DATABASE URI"] = db_uri
+app.config["mongodb://e8R7yNo29fxz3Q05T5PHEMyPlER01de6"] = uri
     
-mongo = PyMongo(app, uri="mongodb://localhost:27017/flight")
-
+mongo = PyMongo(app, uri)
 
 # Call the Database and Collection
 flight = mongo.db
