@@ -69,8 +69,8 @@ with open(jsonpathO) as datafile:
         
 @app.route("/")
 def home():
-    flightPorts = list(flight.db.find())
-    flightOutput = list(flight.db.find())
+    flightPorts = list(admin.db.find())
+    flightOutput = list(admin.db.find())
     return render_template("index.html", flightData=(flightOutput, flightPorts))
         
 # Dump json into Database
