@@ -1,2 +1,2 @@
-web: gunicorn app:flightcrime
+web: gunicorn app:flightcrime --preload
 
