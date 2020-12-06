@@ -4,8 +4,6 @@ import csv
 import os
 import uuid
 import json
-from pprint import pprint
-import datetime
 import flask_pymongo
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
@@ -20,8 +18,6 @@ from flask import (
     redirect,)
 import bson
 
-
-
 app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
@@ -33,7 +29,7 @@ except KeyError:
     uri = "mongodb://localhost:27017/flight"
 
    
-app.config["mongodb://localhost:27017/flight"] = uri
+app.config["mongodb://localhost:27017"] = uri
 
 
 mongo = PyMongo(app, uri)
