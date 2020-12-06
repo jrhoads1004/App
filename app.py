@@ -52,9 +52,9 @@ jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightPorts.insert_many(air_data)
+        flightPorts.find(air_data)
     else:
-        flightPorts.insert_one(air_data)
+        flightPorts.find(air_data)
         
 admin = mongo.db
 flightOutput = admin.flightData
@@ -63,9 +63,9 @@ jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightOutput.insert_many(airportOut)
+        flightOutput.find(airportOut)
     else:
-        flightOutput.insert_one(airportOut)
+        flightOutput.find(airportOut)
         
 @app.route("/")
 def home():
