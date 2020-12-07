@@ -27,7 +27,7 @@ app=Flask(__name__)
 #     uri = os.environ["MONGODB_URI"]
     
 # except KeyError:
-#     uri = "mongodb://localhost:27017/flight"
+uri = "mongodb://localhost:27017/flight"
 
    
 app.config["mongodb://localhost:27017"] = uri
