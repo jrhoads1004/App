@@ -18,8 +18,8 @@ from flask import (
     redirect,)
 import bson
 from bson.json_util import dumps
-from pymongo import MongoClient
-app=Flask(__name__)
+
+
 
 # Use PyMongo to establish Mongo connection
 
