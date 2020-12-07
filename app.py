@@ -27,14 +27,13 @@ try:
     uri = os.environ["MONGODB_URI"]
     
 except KeyError:
-    uri = "mongodb://127.0.0.1:27017/"
+    uri = "mongodb://localhost:27017/flight"
+
+   
+app.config["mongodb://localhost:27017"] = uri
+
 
 mongo = PyMongo(app, uri)
-   
-app.config["mongodb://127.0.0.1:27017/"] = uri
-
-
-
 
 # Call the Database and Collection
 # @app.route("/")
@@ -45,33 +44,33 @@ app.config["mongodb://127.0.0.1:27017/"] = uri
         
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
-admin = mongo.db
-flightPorts = admin.db
+flight = mongo.db
+flightPorts = flight.flightData
 
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightPorts.find(air_data)
+        flightPorts.insert_many(air_data)
     else:
-        flightPorts.find(air_data)
+        flightPorts.insert_one(air_data)
         
-admin = mongo.db
-flightOutput = admin.flight
+flight = mongo.db
+flightOutput = flight.flightData
 
 jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightOutput.find(airportOut)
+        flightOutput.insert_many(airportOut)
     else:
-        flightOutput.find(airportOut)
+        flightOutput.insert_one(airportOut)
         
 @app.route("/")
 def home():
-    flightPorts = list(admin.db.find())
-    flightOutput = list(admin.db.find())
-    return render_template("index.html", admin=(flightOutput, flightPorts))
+    flightPorts = list(flight.db.find())
+    flightOutput = list(flight.db.find())
+    return render_template("index.html", flightData=(flightOutput, flightPorts))
         
 # Dump json into Database
 # @app.route('/users')
@@ -105,7 +104,7 @@ def home():
 
 if __name__=="__main__":
     client = MongoClient()
-    db = client.admin
+    db = client.flight
     collection = db.flightData
     cursor = collection.find({})
     # with open('collection.json', 'w') as file:

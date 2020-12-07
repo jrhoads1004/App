@@ -427,7 +427,5 @@ d3.csv("data/airports.csv").then((importedData) => {
   Plotly.newPlot("barChartAirports", chartData, layout, config);
 });
 
-var flight = connect('MacBook-Pro.local[:27017]/admin');
-
 // https://flightaware.com/live/flight/AFR853/history/20201201/2115Z/SOCA/LFPO/tracklog
 
