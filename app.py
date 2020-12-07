@@ -18,8 +18,8 @@ from flask import (
     redirect,)
 import bson
 from bson.json_util import dumps
-from pymongo import MongoClient
-app=Flask(__name__)
+
+
 
 # Use PyMongo to establish Mongo connection
 
@@ -27,50 +27,42 @@ app=Flask(__name__)
 #     uri = os.environ["MONGODB_URI"]
     
 # except KeyError:
-uri = "mongodb://localhost:27017/flight"
-
-   
-app.config["mongodb://localhost:27017"] = uri
 
 
-mongo = PyMongo(app, uri)
+app=Flask(__name__)
+
+# Use PyMongo to establish Mongo connection
+mongo = PyMongo(app, uri="mongodb+srv://squ0sh:JBml100$@tododata.mutlv.mongodb.net/flight?retryWrites=true&w=majority")
+
 
 # Call the Database and Collection
-# @app.route("/")
-# def home():
-#     flightPorts = list(flight.db.find())
-#     flightOutput = list(flight.db.find())
-#     return render_template("index.html", flightData=(flightOutput, flightPorts))
-        
+flight = mongo.db
+flightCollection = flight.flightData
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
-flight = mongo.db
-flightPorts = flight.flightData
-
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightPorts.insert_many(air_data)
+        flightCollection.insert_many(air_data)
     else:
-        flightPorts.insert_one(air_data)
+        flightCollection.insert_one(air_data)
         
-flight = mongo.db
-flightOutput = flight.flightData
-
 jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightOutput.insert_many(airportOut)
+        flightCollection.insert_many(airportOut)
     else:
-        flightOutput.insert_one(airportOut)
+        flightCollection.insert_one(airportOut)
         
 @app.route("/")
 def home():
-    flightPorts = list(flight.db.find())
-    flightOutput = list(flight.db.find())
-    return render_template("index.html", flightData=(flightOutput, flightPorts))
+    flightCollection = list(mongo.db.find())
+    resp = json.dumps(flightCollection)
+    return resp
+
+    return render_template("index.html", flightData=flightCollection)
         
 # Dump json into Database
 # @app.route('/users')
@@ -103,13 +95,13 @@ def home():
     return redirect("/", code=302)
 
 if __name__=="__main__":
-    client = MongoClient()
-    db = client.flight
-    collection = db.flightData
-    cursor = collection.find({})
-    # with open('collection.json', 'w') as file:
-    #     file.write('[')
-    #     for document in cursor:
+    # client = MongoClient()
+    # db = client.flight
+    # collection = db.flightData
+    # cursor = collection.find({})
+    # # with open('collection.json', 'w') as file:
+    # #     file.write('[')
+    # #     for document in cursor:
     #         file.write(dumps(document))
    
     
