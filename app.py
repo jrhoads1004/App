@@ -92,13 +92,13 @@ def home():
     return redirect("/", code=302)
 
 if __name__=="__main__":
-    client = MongoClient()
-    db = client.flight
-    collection = db.flightData
-    cursor = collection.find({})
-    # with open('collection.json', 'w') as file:
-    #     file.write('[')
-    #     for document in cursor:
+    # client = MongoClient()
+    # db = client.flight
+    # collection = db.flightData
+    # cursor = collection.find({})
+    # # with open('collection.json', 'w') as file:
+    # #     file.write('[')
+    # #     for document in cursor:
     #         file.write(dumps(document))
    
     
