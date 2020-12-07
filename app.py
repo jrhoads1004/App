@@ -23,11 +23,11 @@ app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
 
-try:
-    uri = os.environ["MONGODB_URI"]
+# try:
+#     uri = os.environ["MONGODB_URI"]
     
-except KeyError:
-    uri = "mongodb://127.0.0.1:27017/"
+# except KeyError:
+#     uri = "mongodb://127.0.0.1:27017/"
 
 
    
