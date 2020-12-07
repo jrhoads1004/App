@@ -112,5 +112,5 @@ if __name__=="__main__":
     #     for document in cursor:
     #         file.write(dumps(document))
     #         file.write(',')
-    #     file.write(']')
+    
     app.run(debug=True)
