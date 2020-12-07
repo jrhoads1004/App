@@ -27,11 +27,11 @@ try:
     uri = os.environ["MONGODB_URI"]
     
 except KeyError:
-    uri = "mongodb://127.0.0.1:27017/admin""
+    uri = "mongodb://localhost:27017/admin""
 
 mongo = PyMongo.MongoClient(app)
    
-app.config["mongodb://127.0.0.1:27017/admin"] = uri
+app.config["mongodb://localhost:27017/admin"] = uri
 
 
 
