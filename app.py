@@ -46,7 +46,7 @@ app.config["mongodb://127.0.0.1:27017/"] = uri
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
 flight = mongo.db
-flightPorts = flight.flightData
+flightPorts = flightData.flight
 
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
@@ -69,8 +69,8 @@ with open(jsonpathO) as datafile:
         
 @app.route("/")
 def home():
-    flightPorts = list(admin.db.find())
-    flightOutput = list(admin.db.find())
+    flightPorts = list(flight.flightData.find())
+    flightOutput = list(flight.flightData.find())
     return render_template("index.html", flightData=(flightOutput, flightPorts))
         
 # Dump json into Database
