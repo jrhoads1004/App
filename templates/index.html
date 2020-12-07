@@ -6,9 +6,18 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
+  </head>
+<body>
+  <app-root><base href="/"></app-root>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</html>
     <title>Real-Time Air Traffic Map</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
 
     <!-- Bootstrap core CSS -->
 <link href="static/css/bootstrap_style.css" rel="stylesheet">
@@ -42,7 +51,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="app/home/home.component.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -65,11 +74,18 @@
     </form>
   </div>
 </nav>
-
 <main role="main" class="container">
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <div class="style.css">
-    <h1>FlightApp</h1>
+    <h1></h1>
     <p class="lead"></p>
   </div>
 
@@ -109,7 +125,9 @@ crossorigin="anonymous"></script>
 
 <body>
 
-<h1>Real-Time Air Traffic Map</h1>
+<h1>FlightApp</h1>
+    
+<h2>Real-Time Air Traffic Map</h2>
 
 <p id="waitLoading" style="color: red;"></p>
 <p>
@@ -118,7 +136,7 @@ Number of aircrafts currently on the map: <span id="numAircrafts" style="color: 
 
 <p>
 Number of airports currently on the map: <span id="numAirports" style="color:green"></span>
-<script type="text/csv" src="/data/airports.csv"></script>
+<script type="text/csv" src="data/airports.csv"></script>
 </p>
 
 
@@ -145,7 +163,7 @@ Number of airports currently on the map: <span id="numAirports" style="color:gre
 <script type="text/javascript" src="static/js/config.js"></script>
 <!-- JS -->
 <script type="text/javascript" src="static/js/logic.js"></script>
-<link rel="stylesheet" type="text/csv" href="data/airports.csv">
+
 
 </body>
 
