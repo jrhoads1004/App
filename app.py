@@ -5,7 +5,6 @@ import os
 import uuid
 import csv
 import json
-import dnspython
 import flask_pymongo
 from flask_pymongo import PyMongo
 from pprint import pprint
