@@ -27,11 +27,11 @@ try:
     uri = os.environ["MONGODB_URI"]
     
 except KeyError:
-    uri = "mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb"
+    uri = "mongodb://127.0.0.1:27017/"
 
 mongo = PyMongo(app, uri)
    
-app.config["mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb"] = uri
+app.config["mongodb://127.0.0.1:27017/"] = uri
 
 
 
