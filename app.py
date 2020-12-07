@@ -29,7 +29,7 @@ try:
 except KeyError:
     uri = "mongodb://localhost:27017/admin""
 
-mongo = PyMongo.MongoClient(app)
+mongo = PyMongo.MongoClient(app, uri)
    
 app.config["mongodb://localhost:27017/admin"] = uri
 
