@@ -33,7 +33,7 @@ app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app, uri="mongodb://localhost:27017/flight")
-app.config["mongodb://localhost:27017"] = uri
+app.config["mongodb://localhost:27017"] 
 
 # Call the Database and Collection
 flight = mongo.db
