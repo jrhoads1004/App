@@ -27,50 +27,39 @@ app=Flask(__name__)
 #     uri = os.environ["MONGODB_URI"]
     
 # except KeyError:
-uri = "mongodb://localhost:27017/flight"
 
-   
+
+app=Flask(__name__)
+
+# Use PyMongo to establish Mongo connection
+mongo = PyMongo(app, uri="mongodb://localhost:27017/flight")
 app.config["mongodb://localhost:27017"] = uri
 
-
-mongo = PyMongo(app, uri)
-
 # Call the Database and Collection
-# @app.route("/")
-# def home():
-#     flightPorts = list(flight.db.find())
-#     flightOutput = list(flight.db.find())
-#     return render_template("index.html", flightData=(flightOutput, flightPorts))
-        
+flight = mongo.db
+flightCollection = flight.flightData
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
-flight = mongo.db
-flightPorts = flight.flightData
-
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightData.insert_many(air_data)
+        flightCollection.insert_many(air_data)
     else:
-        flightData.insert_one(air_data)
+        flightCollection.insert_one(air_data)
         
-flight = mongo.db
-flightOutput = flight.flightData
-
 jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightData.insert_many(airportOut)
+        flightCollection.insert_many(airportOut)
     else:
-        flightData.insert_one(airportOut)
+        flightCollection.insert_one(airportOut)
         
 @app.route("/")
 def home():
-    flightPorts = list(flight.db.find())
-    flightOutput = list(flight.db.find())
-    return render_template("index.html", flightData=(flightOutput, flightPorts))
+    flightCollection = list(flight.db.find())
+    return render_template("index.html", flightData=flightCollection)
         
 # Dump json into Database
 # @app.route('/users')
