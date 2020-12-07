@@ -41,11 +41,8 @@ flightData = flight.db
 
 @app.route("/")
 def home():
-    flightData = list(mongo.db.find())
-    resp = json.dumps(flightData)
-    return resp
-
     
+    return render_template("index.html", flightData=flightData)
         
 # Dump json into Database
 #loaded json to Mongo, json created from a df using pandas to clean a csv
@@ -64,9 +61,12 @@ with open(jsonpathO) as datafile:
         flightData.insert_many(airportOut)
     else:
         flightData.insert_one(airportOut)
-    
-    return render_template("index.html", flightData=flightData)    
 
+@app.route("/flight")    
+def index():
+    flightData = list(mongo.db.find())
+    resp = json.dumps(flightData)   
+    return resp
 # @app.route('/users')
 # def users():
 #     users = flight.flightData.find()
@@ -94,7 +94,7 @@ with open(jsonpathO) as datafile:
     #return render_template("index.html", flightData=(flightOutput, flightPorts)
 
 
-    #return redirect("/", code=302)
+       #return redirect("/", code=302)
 
 if __name__=="__main__":
     # client = MongoClient()
