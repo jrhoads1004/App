@@ -45,8 +45,8 @@ app.config["mongodb://127.0.0.1:27017/"] = uri
         
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
-flightData = mongo.flight
-flightPorts = flightData.flight
+flight = mongo.db
+flightData = flight.db
 
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
