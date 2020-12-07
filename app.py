@@ -36,24 +36,24 @@ mongo = PyMongo(app, uri="mongodb+srv://squ0sh:JBml100$@tododata.mutlv.mongodb.n
 
 # Call the Database and Collection
 flight = mongo.db
-flightCollection = flight.flightData
+flightData = flight.db
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightCollection.insert_many(air_data)
+        flightData.insert_many(air_data)
     else:
-        flightCollection.insert_one(air_data)
+        flightData.insert_one(air_data)
         
 jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightCollection.insert_many(airportOut)
+        flightData.insert_many(airportOut)
     else:
-        flightCollection.insert_one(airportOut)
+        flightData.insert_one(airportOut)
         
 @app.route("/")
 def home():
