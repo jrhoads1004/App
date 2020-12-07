@@ -62,9 +62,9 @@ jsonpathO = os.path.join("data", "Airport_Output.json")
 with open(jsonpathO) as datafile:
     airportOut = json.load(datafile)
     if isinstance(airportOut, list):
-        flightOutput.insert_many(airportOut)
+        flight.insert_many(airportOut)
     else:
-        flightOutput.insert_one(airportOut)
+        flight.insert_one(airportOut)
         
 @app.route("/")
 def home():
