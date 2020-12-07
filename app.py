@@ -23,14 +23,25 @@ app=Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
 
-try:
-    uri = os.environ["MONGODB_URI"]
+# try:
+#     uri = os.environ["MONGODB_URI"]
     
+<<<<<<< HEAD
 except KeyError:
     uri = "mongodb://localhost:27017/flight"
 
    
 app.config["mongodb://localhost:27017"] = uri
+=======
+# except KeyError:
+#     uri = "mongodb://127.0.0.1:27017/"
+
+
+   
+app.config["MONGO_URI"] = "mongodb://localhost:27017/flight"
+mongo = PyMongo(app) = uri
+
+>>>>>>> bfd92d4e594227b99f8bd77a1c30eaa2da2a8195
 
 
 mongo = PyMongo(app, uri)
@@ -45,7 +56,11 @@ mongo = PyMongo(app, uri)
 
 #loaded json to Mongo, json created from a df using pandas to clean a csv
 flight = mongo.db
+<<<<<<< HEAD
 flightPorts = flight.flightData
+=======
+flightData = flight.flightData
+>>>>>>> bfd92d4e594227b99f8bd77a1c30eaa2da2a8195
 
 jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
@@ -67,10 +82,21 @@ with open(jsonpathO) as datafile:
         flightOutput.insert_one(airportOut)
         
 @app.route("/")
+<<<<<<< HEAD
 def home():
     flightPorts = list(flight.db.find())
     flightOutput = list(flight.db.find())
     return render_template("index.html", flightData=(flightOutput, flightPorts))
+=======
+def home_page():
+    online_users = mongo.db.users.find({"online": True})
+    return render_template("index.html", online_users=online_users)
+
+@app.route("/uploads/<path:filename>", methods=["POST"])
+def save_upload(filename):
+    mongo.save_file(filename, request.files["file"])
+    return redirect(url_for("get_upload", filename=filename))
+>>>>>>> bfd92d4e594227b99f8bd77a1c30eaa2da2a8195
         
 # Dump json into Database
 # @app.route('/users')
