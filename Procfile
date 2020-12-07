@@ -1,3 +1,1 @@
-web: gunicorn app:app 
-pip install -r requirements.txt
-
+web: gunicorn app:app --preload
