@@ -27,7 +27,6 @@ from bson.json_util import dumps
 # try:
 #     uri = os.environ["MONGODB_URI"]
     
-# except KeyError:
 
 
 app=Flask(__name__)
