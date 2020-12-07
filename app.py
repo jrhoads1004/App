@@ -51,9 +51,9 @@ jsonpath = os.path.join("data", "airports.json")
 with open(jsonpath) as datafile:
     air_data = json.load(datafile)
     if isinstance(air_data, list):
-        flightPorts.insert_many(air_data)
+        flight.insert_many(air_data)
     else:
-        flightPorts.insert_one(air_data)
+        flight.insert_one(air_data)
         
 flight = mongo.db
 flightOutput = flight.flightData
