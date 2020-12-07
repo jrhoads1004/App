@@ -29,9 +29,10 @@ try:
 except KeyError:
     uri = "mongodb://127.0.0.1:27017/"
 
-mongo = PyMongo(app, uri)
+
    
-app.config["mongodb://127.0.0.1:27017/"] = uri
+app.config["MONGO_URI"] = "mongodb://localhost:27017/flight"
+mongo = PyMongo(app) = uri
 
 
 
@@ -68,10 +69,14 @@ with open(jsonpathO) as datafile:
         flightOutput.find(airportOut)
         
 @app.route("/")
-def home():
-    flightPorts = list(flight.flightData.find())
-    flightOutput = list(flight.flightData.find())
-    return render_template("index.html", flightData=(flightOutput, flightPorts))
+def home_page():
+    online_users = mongo.db.users.find({"online": True})
+    return render_template("index.html", online_users=online_users)
+
+@app.route("/uploads/<path:filename>", methods=["POST"])
+def save_upload(filename):
+    mongo.save_file(filename, request.files["file"])
+    return redirect(url_for("get_upload", filename=filename))
         
 # Dump json into Database
 # @app.route('/users')
