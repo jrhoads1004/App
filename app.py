@@ -58,7 +58,10 @@ with open(jsonpathO) as datafile:
         
 @app.route("/")
 def home():
-    flightCollection = list(flight.db.find())
+    flightCollection = list(mongo.db.find())
+    resp = json.dumps(flightCollection)
+    return resp
+
     return render_template("index.html", flightData=flightCollection)
         
 # Dump json into Database
