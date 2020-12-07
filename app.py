@@ -29,7 +29,7 @@ try:
 except KeyError:
     uri = "mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb"
 
-mongo = PyMongo.MongoClient(app, uri)
+mongo = PyMongo(app, uri)
    
 app.config["mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb"] = uri
 
