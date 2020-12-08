@@ -131,11 +131,10 @@ def api_aircrafts():
 # Return a json with the query results for the airports table
 @app.route("/api/v1.0/airports-data")
 def api_airports():
-    api_airports = list(flightData.db.insert_many(documents))
-    resp = json.dumps(api_airports)
-    return resp
+    api_airports = ("collection.json")
+    
     list_records = []
-    for records in flightData:
+    for records in api_airports:
         Data = list_records.append(records)
         
         parsed = json.dumps(Data)
