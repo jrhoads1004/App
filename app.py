@@ -58,7 +58,7 @@ with open(jsonpathO) as datafile:
     else:
         flightData.insert_one(airportOut)
 
-# @app.route("/flight")    
+  
 # def index():
 #     flightData = list(mongo.db.find())
 #     resp = json.dumps(flightData)   
