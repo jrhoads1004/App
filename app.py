@@ -91,55 +91,55 @@ def home():
     return render_template("index.html", MongoStuff=flightData)
 
 
-# Return the APIs route available
-# @app.route("/api")
-# def api_routes():
-#     flightCollection = MongoDB_Query_add.api()
-#     MongoStuff = mongo.db.flightData
-#     MongoStuff.update({}, flightCollection, upsert=True)
-#     with open('collection.json', 'w') as file:
-#         file.write('[')
-#         for document in cursor:
-#             file.write(dumps(document))
-#     return (
-#         f"<h3>API routes available:</h3>"
-#         f"/flight<br/>"
-#         f"/api/v1.0/flightData/icao24/<icao24><br/>"
-#         f"/api/v1.0/flightData/callsign/<callsign><br/>"
-#     )
+Return the APIs route available
+@app.route("/api")
+def api_routes():
+    flightCollection = MongoDB_Query_add.api()
+    MongoStuff = mongo.db.flightData
+    MongoStuff.update({}, flightCollection, upsert=True)
+    with open('collection.json', 'w') as file:
+        file.write('[')
+        for document in cursor:
+            file.write(dumps(document))
+    return (
+        f"<h3>API routes available:</h3>"
+        f"/flight<br/>"
+        f"/api/v1.0/flightData/icao24/<icao24><br/>"
+        f"/api/v1.0/flightData/callsign/<callsign><br/>"
+    )
 
 # Return a json with the query results for the aircrafts table
-# @app.route("/api/v1.0/aircrafts-data")
-# def api_aircrafts():
+@app.route("/api/v1.0/aircrafts-data")
+def api_aircrafts():
 
-    # MySQL query to return all table elements that have not null latitute and have the newest time stamp
+    #MySQL query to return all table elements that have not null latitute and have the newest time stamp
     
-    # list_records = []
-    # for records in flightData:
-    #     Data = list_records.append(records)
+    list_records = []
+    for records in flightData:
+        Data = list_records.append(records)
         
-    #     parsed = json.dumps(Data)
-    #     print(records)
-    #     return jsonify(parsed)
+        parsed = json.dumps(Data)
+        print(records)
+        return jsonify(parsed)
 
 # Return a json with the query results for the airports table
-# @app.route("/api/v1.0/airports-data")
-# def api_airports():
-#     api_airports = list(flightData.db.insert_many())
-#     resp = json.dumps(api_airports)
-#     return resp
-    # list_records = []
-    # for records in flightData:
-    #     Data = list_records.append(records)
+@app.route("/api/v1.0/airports-data")
+def api_airports():
+    api_airports = list(flightData.db.insert_many())
+    resp = json.dumps(api_airports)
+    return resp
+    list_records = []
+    for records in flightData:
+        Data = list_records.append(records)
         
-    #     parsed = json.dumps(Data)
-    #     print(records)
-    #     return jsonify(parsed)
+        parsed = json.dumps(Data)
+        print(records)
+        return jsonify(parsed)
 
 
 # Return a json with the query results for the aircrafts table for a specific icao24
-# @app.route("/api/v1.0/flightData/icao24/<icao24>")
-# def api_aircrafts_icao24(icao24):
+@app.route("/api/v1.0/flightData/icao24/<icao24>")
+def api_aircrafts_icao24(icao24):
 
     # Create place holders records to insert into the table
                            
