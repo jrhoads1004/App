@@ -18,13 +18,13 @@ var myMap = L.map("map", {
 // Leaflet doesn't have out-of-the-box tile layers, but it allows us to usetile layer APIs. Here, we're using mapbox.
 // We use the addTo method to add objects to our map
 // Documentation for tileLayer:https://leafletjs.com/reference-1.6.0.html#tilelayer
-// L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-//   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-//   maxZoom: 18,
-//   id: "dark-v10",
-//   // id: "streets-v11",
-//   accessToken: API_KEY
-// }).addTo(myMap);
+L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "dark-v10",
+  id: "streets-v11",
+  accessToken: API_KEY
+}).addTo(myMap);
 
 
 
@@ -37,12 +37,11 @@ tiles.addTo(myMap);
 
 
 
-// Leaflet.Terminator https://github.com/joergdietrich/Leaflet.Terminator
+Leaflet.Terminator "https://github.com/joergdietrich/Leaflet.Terminator"
 L.terminator().addTo(myMap);
 
-
-/* Date.prototype.toLocaleDateString()
-     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString */
+  Date.prototype.toLocaleDateString()
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString"
 var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 options.timeZone = 'UTC';
 
@@ -59,7 +58,7 @@ d3.json(url).then((data) => {
   // Store the imported data to a variable
   console.log(data);
 
-  // document.getElementById('waitLoading').textContent = "Wait... the map is being loaded!";
+  document.getElementById('waitLoading').textContent = "Wait... the map is being loaded!";
 
 
   // Create and object with the data organized by key value pair
@@ -101,8 +100,8 @@ d3.json(url).then((data) => {
     }
   };
 
-  // print the object data
-  // console.log(flightData.length);
+  print the object data
+  console.log(flightData.length);
 
   var totalFlightMap = flightData.length;
   
@@ -150,7 +149,7 @@ d3.json(url).then((data) => {
       countrytData.push(flightData[i].origin_country)
     }
   };
-  // console.log(countrytData);
+  console.log(countrytData);
 
 
   // Create an object with the aircrafts by origin country
@@ -165,14 +164,14 @@ d3.json(url).then((data) => {
     }
     originCountryAircraft.push({ "country": countrytData[i], "aircrafts": n });
   };
-  // console.log(originCountryAircraft);
+  console.log(originCountryAircraft);
 
 
   // Sort the samples in descending order of sample values
   originCountryAircraft.sort((a, b) => b.aircrafts - a.aircrafts);
   // Select the top origin country number of aircrafts
   top10originCountryAircraft = originCountryAircraft.slice(0, 10);
-  // console.log(top10originCountryAircraft);
+  console.log(top10originCountryAircraft);
 
   // Reverse the list due to the Plotly requeriments
   top10originCountryAircraft.reverse()
@@ -240,19 +239,19 @@ d3.json(url).then((data) => {
     }
   };
   posSource.push({ "Type": "ADS-B", "Qtd": ADSB }, { "Type": "ASTERIX", "Qtd": ASTERIX }, { "Type": "MLAT", "Qtd": MLAT });
-  // console.log(posSource);
+  console.log(posSource);
 
 
-  // console.log(Object.entries(posSource));
-  // console.log(Object.keys(posSource));
+  console.log(Object.entries(posSource));
+  console.log(Object.keys(posSource));
 
   var data = [{
     values: posSource.map(element => element.Qtd),
     labels: posSource.map(element => element.Type),
-    // text: 'CO2',
+    text: 'CO2',
     textposition: 'inside',
     domain: { column: 1 },
-    // name: 'CO2 Emissions',
+    name: 'CO2 Emissions',
     hoverinfo: 'label+percent+name',
     hole: .4,
     type: 'pie'
@@ -263,7 +262,7 @@ d3.json(url).then((data) => {
     height: 400,
     width: 600,
     showlegend: true,
-    // grid: { rows: 1, columns: 1 }
+    grid: { rows: 1, columns: 1 }
   };
 
   Plotly.newPlot('positionSourcePlot', data, layout, config);
@@ -273,7 +272,7 @@ d3.json(url).then((data) => {
   var trace3 = {
     x: flightData.map(element => element.baro_altitude * 3.28084),
     y: flightData.map(element => element.velocity * 2.23694),
-    // text: flightData.map(element => element.callsign),
+    text: flightData.map(element => element.callsign),
     text: flightData,
     hovertemplate: 'Callsign: %{text.callsign}<extra></extra>' +
       '<br>Vertical rate: %{text.vertical_rate}',
@@ -305,7 +304,7 @@ d3.json(url).then((data) => {
 airports_url = "https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat"
 
 d3.csv("data/airports.csv").then((importedData) => {
-  // console.log(importedData);
+  console.log(importedData);
 
   var airportData = importedData;
   // Cast the data value to a number for each piece of data
@@ -316,7 +315,7 @@ d3.csv("data/airports.csv").then((importedData) => {
     d["Longitude"] = +d["Longitude"];
   });
 
-  // console.log(airportData);
+  console.log(airportData);
 
   airportData.forEach(function (element) {
     if (element.Country === "Brazil") {
@@ -357,7 +356,7 @@ d3.csv("data/airports.csv").then((importedData) => {
     }
   };
 
-  // console.log(countryAirPorts);
+  console.log(countryAirPorts);
 
   // Create an object with the aircrafts by origin country
   totalAirportsCountry = [];
@@ -393,7 +392,7 @@ d3.csv("data/airports.csv").then((importedData) => {
   // Reverse the list due to the Plotly requeriments
   top10CountryAirports.reverse()
 
-  // console.log(top10CountryAirports);
+  console.log(top10CountryAirports);
 
   // Trace1 to display the data
   var trace1 = {
