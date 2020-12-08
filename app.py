@@ -121,7 +121,7 @@ def api_aircrafts():
     #MySQL query to return all table elements that have not null latitute and have the newest time stamp
     
     list_records = []
-    for records in flightData:
+    for records in flightCollection:
         Data = list_records.append(records)
         
         parsed = json.dumps(Data)
