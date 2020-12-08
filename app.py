@@ -109,8 +109,8 @@ def api_routes():
             file.write(dumps(document))
     return (
         f"<h3>API routes available:</h3>"
-        f"/flight<br/>"
-        f"/api/v1.0/flightData/icao24/<icao24><br/>"
+        f"/api/v1.0/aircrafts-data"
+        f"/api/v1.0/airports-data/icao24/<icao24><br/>"
         f"/api/v1.0/flightData/callsign/<callsign><br/>"
     )
 
