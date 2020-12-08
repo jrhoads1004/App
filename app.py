@@ -2,7 +2,7 @@
 import csv
 import os
 import json
-import dnspython
+
 import flask_pymongo
 from flask_pymongo import PyMongo
 import pymongo
