@@ -51,7 +51,7 @@ from bson.json_util import dumps
 # Flask Setup
 #################################################
 
-app=Flask(flightcrime)
+app=Flask("flightcrime")
 
 # Use PyMongo to establish Mongo connection
 mongo = pymongo.MongoClient("mongodb+srv://squ0sh:JBml100$@tododata.mutlv.mongodb.net/flight?retryWrites=true&w=majority")
