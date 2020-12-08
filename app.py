@@ -20,10 +20,7 @@ from bson.json_util import dumps
 
 
 
-# Use PyMongo to establish Mongo connection
 
-# try:
-#     uri = os.environ["MONGODB_URI"]
     
 
 
