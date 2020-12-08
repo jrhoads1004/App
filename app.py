@@ -88,7 +88,7 @@ def users():
         user = db.flightData.find()
         resp = dumps(user)
         return resp
-# Home page.
+
 @app.route("/")
 def home():
     
