@@ -62,7 +62,7 @@ flightData = db.flight
 #         for document in cursor:
 #             file.write(load(document))
 
-# Call the Database and Collection
+
 
 # flight = mongo.db
 # flightData = flight.create_collection
