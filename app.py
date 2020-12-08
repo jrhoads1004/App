@@ -1,7 +1,6 @@
 
 import csv
 import os
-
 import json
 import dnspython
 import flask_pymongo
