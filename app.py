@@ -143,7 +143,7 @@ def api_aircrafts_icao24(icao24):
 
     # Create place holders records to insert into the table
                            
-MongoStuff =                           {"id",
+                    MongoStuff =       {"id"                   ,
                                         "icao24",
                                         "callsign",
                                         "origin_country",
