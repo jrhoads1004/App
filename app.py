@@ -118,7 +118,7 @@ def api_routes():
 @app.route("/api/v1.0/aircrafts-data")
 def api_aircrafts():
     api_aircrafts = ("collection.json")
-    #MySQL query to return all table elements that have not null latitute and have the newest time stamp
+    #query to return all table elements that have not null latitute and have the newest time stamp
     
     list_records = []
     for records in api_aircrafts:
