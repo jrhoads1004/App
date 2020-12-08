@@ -1,7 +1,7 @@
 
 import csv
 import os
-import uuid
+
 import json
 import dnspython
 import flask_pymongo
