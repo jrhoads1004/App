@@ -91,7 +91,7 @@ def home():
     return render_template("index.html", MongoStuff=flightData)
 
 
-Return the APIs route available
+#Return the APIs route available
 @app.route("/api")
 def api_routes():
     flightCollection = MongoDB_Query_add.api()
