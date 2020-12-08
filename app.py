@@ -83,13 +83,18 @@ flightData = db.flight
 #     else:
 #         flightData.insert_one(data)
 
+@app.route('/users')
+def users():
+        user = db.flightData.find()
+        resp = dumps(user)
+        return resp
 # Home page.
 @app.route("/")
 def home():
     
-    MongoStuff=mongo.db.flightData.find()
-    
-    return render_template("index.html", MongoStuff=flightData)
+    MongoStuff = mongo.db.flightData.find()
+    print(MongoStuff)
+    return render_template("index.html", flightData=MongoStuff)
 
 
 #Return the APIs route available
