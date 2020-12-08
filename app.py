@@ -21,6 +21,7 @@ from flask import (
     redirect,)
 import bson
 from bson.json_util import dumps
+import MongoDB_Query_add.py
 
 
 
@@ -94,7 +95,7 @@ def home():
 #Return the APIs route available
 @app.route("/api")
 def api_routes():
-    flightCollection = MongoDB_Query_add.api()
+    flightCollection = MongoDB_Query_add.py()
     MongoStuff = mongo.db.flightData
     MongoStuff.update({}, flightCollection, upsert=True)
     with open('collection.json', 'w') as file:
