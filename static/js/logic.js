@@ -37,7 +37,7 @@ tiles.addTo(myMap);
 
 
 
-Leaflet.Terminator "https://github.com/joergdietrich/Leaflet.Terminator"
+//Leaflet.Terminator "https://github.com/joergdietrich/Leaflet.Terminator"
 L.terminator().addTo(myMap);
 
   Date.prototype.toLocaleDateString()
