@@ -19,7 +19,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, and_
 from api_keys import database_uri
-from bson.json_util import dumps
+
 
 ## # Import database user and password
 try:
