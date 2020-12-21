@@ -6,7 +6,7 @@ import uuid
 import csv
 import json
 import pymongo
-from pymongo import MongoClient
+# from pymongo import MongoClient
 from pprint import pprint
 import datetime
 import flask
@@ -48,7 +48,7 @@ from bson.json_util import dumps
 # Flask Setup
 #################################################
 conn = ['MONGO_URI']
-client = pymongo.MongoClient(conn)
+client = pymongo(conn)
 
 # Use PyMongo to establish Mongo connection
 
