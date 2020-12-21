@@ -36,23 +36,22 @@ except:
 
 #Database name and database tables
 
-table_airplanes = "aircraft_data"
-airportData = "airportData"
+# table_airplanes = "aircraft_data"
+# airportData = "airportData"
 
 
 
-# MySQL specific connection string
+# # MySQL specific connection string
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine("DATABASE_URL")
 
+# # Query database for airport data that will be always the same
 
-# Query database for airport data that will be always the same
+# airport_db = airportData.find(airportData)
 
-airport_db = airportData.find(airportData)
-
-jsonpath = os.path.join("data","airports.json")
-with open(jsonpath) as f:
-    data = json.loads(f.read())
+# jsonpath = os.path.join("data","airports.json")
+# with open(jsonpath) as f:
+#     data = json.loads(f.read())
     # print(data[0]['text'])
 # if isinstance(data, list):
 #     db_name.insert(data)
