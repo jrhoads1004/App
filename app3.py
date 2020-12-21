@@ -6,8 +6,7 @@ import uuid
 import csv
 import json
 
-from flask_pymongo import PyMongo
-import mongoengine
+
 import pymongo
 from pymongo import MongoClient
 from pprint import pprint
