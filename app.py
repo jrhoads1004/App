@@ -25,10 +25,11 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 ## # Import database user and password
 try:
-    from api_keys import pg_host
-    from api_keys import db_name
-    from api_keys import pg_user
-    from api_keys import pg_pass
+    from api_keys import DATABASE_URL
+    # from api_keys import pg_host
+    # from api_keys import db_name
+    # from api_keys import pg_user
+    # from api_keys import pg_pass
 except:
     pass
 
@@ -42,7 +43,7 @@ airportData = "airportData"
 
 # MySQL specific connection string
 
-engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}/{db_name}')
+engine = create_engine(DATABASE_URL)
 
 
 # Query database for airport data that will be always the same

@@ -13,7 +13,7 @@ pg_user = 'squ0sh'
 pg_pass = '$objbml'
 db_name = 'project_2'
 
-DATABASE_URL = "postgres://localhost:5342"
+DATABASE_URL = "postgres://infmnrdkidyjtn:39a6dbf16c8e19ef58"
 CrimeAPI = "k3RAzKN1Ag14xTPlculT39RZb38LGgsG8n27ZycG"
 
 MONGO_URI = "$objbml"
