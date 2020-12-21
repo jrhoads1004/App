@@ -5,8 +5,6 @@ import os
 import uuid
 import csv
 import json
-
-
 import pymongo
 from pymongo import MongoClient
 from pprint import pprint
