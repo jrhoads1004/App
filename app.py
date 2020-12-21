@@ -48,7 +48,7 @@ engine = create_engine(DATABASE_URL)
 
 # Query database for airport data that will be always the same
 
-airport_db = db_name.find(airportData)
+airport_db = airportData.find(airportData)
 
 jsonpath = os.path.join("data","airports.json")
 with open(jsonpath) as f:
@@ -114,111 +114,111 @@ def airports_url():
 
 
 # Return a json with the query results for the aircrafts table
-@app.route("/api/v1.0/aircrafts-data")
-def api_aircrafts():
-    # MySQL query to return all table elements that have not 
-    # null latitute and have the newest time stamp
-    aircraft_df = pd.read_sql(
-        f"""
-        SELECT
-            * 
-        FROM 
-            {table_airplanes}
-        WHERE 
-            longitude IS NOT NULL
-        AND 
-            time = (SELECT MAX(time) 
-        FROM 
-            {table_airplanes})
-        ORDER BY 
-            id
-        DESC;
-        """,
-         engine)
+# @app.route("/api/v1.0/aircrafts-data")
+# def api_aircrafts():
+#     # MySQL query to return all table elements that have not 
+#     # null latitute and have the newest time stamp
+#     aircraft_df = pd.read_sql(
+#         f"""
+#         SELECT
+#             * 
+#         FROM 
+#             {table_airplanes}
+#         WHERE 
+#             longitude IS NOT NULL
+#         AND 
+#             time = (SELECT MAX(time) 
+#         FROM 
+#             {table_airplanes})
+#         ORDER BY 
+#             id
+#         DESC;
+#         """,
+#          engine)
 
-    result = aircraft_df.to_json(orient="records")
-    parsed = json.loads(result)
+#     result = aircraft_df.to_json(orient="records")
+#     parsed = json.loads(result)
 
-    return jsonify(parsed)
+#     return jsonify(parsed)
 
-# Return a json with the query results for the airports table
-@app.route("/api/v1.0/airports-data/<country>")
-def api_airports(country):
+# # Return a json with the query results for the airports table
+# @app.route("/api/v1.0/airports-data/<country>")
+# def api_airports(country):
 
-    if f"{country}" == 'ALL':
-        airports_df = airportData
+#     if f"{country}" == 'ALL':
+#         airports_df = airportData
         
-    else:
-        airports_df = airports_df_all.loc[airportsDatal['Country']==f"{country}"]
-    result = airports_df.to_json(orient="records")
-    parsed = json.loads(result)
+#     else:
+#         airports_df = airports_df_all.loc[airportsDatal['Country']==f"{country}"]
+#     result = airports_df.to_json(orient="records")
+#     parsed = json.loads(result)
 
-    return jsonify(parsed)
+#     return jsonify(parsed)
 
-# Return a json with the query results for the aircrafts table for a specific icao24
-@app.route("/api/v1.0/aircrafts-data/icao24/<icao24>")
-def api_aircrafts_icao24():
+# # Return a json with the query results for the aircrafts table for a specific icao24
+# @app.route("/api/v1.0/aircrafts-data/icao24/<icao24>")
+# def api_aircrafts_icao24():
 
-    aircraft_df = pd.read_sql(
-        f"""
-        SELECT 
-            *
-        FROM
-            {table_airplanes}
-        WHERE
-            longitude IS NOT NULL 
-        AND
-            icao24 = '{str(icao24)}';
-        """,
-         engine)
+#     aircraft_df = pd.read_sql(
+#         f"""
+#         SELECT 
+#             *
+#         FROM
+#             {table_airplanes}
+#         WHERE
+#             longitude IS NOT NULL 
+#         AND
+#             icao24 = '{str(icao24)}';
+#         """,
+#          engine)
 
-    result = aircraft_df.to_json(orient="records")
-    parsed = json.loads(result)
-    return jsonify(parsed)
-
-
-# Return a json with the query results for the aircrafts table for a specific callsign
-@app.route("/api/v1.0/aircrafts-data/callsign/<callsign>")
-def api_aircrafts_callsign():
-
-    aircraft_df = pd.read_sql(
-        f"""
-        SELECT 
-            *
-        FROM
-            {table_airplanes}
-        WHERE
-            longitude IS NOT NULL
-        AND
-            callsign = '{str(callsign)}';
-        """,
-         engine)
-
-    result = aircraft_df.to_json(orient="records")
-    parsed = json.loads(result)
-    return jsonify(parsed)
+#     result = aircraft_df.to_json(orient="records")
+#     parsed = json.loads(result)
+#     return jsonify(parsed)
 
 
-# Return a json with the query results for the aircrafts table for a specific callsign
-@app.route("/api/v1.0/aircrafts-data/byhour")
-def api_aircrafts_byhour():
+# # Return a json with the query results for the aircrafts table for a specific callsign
+# @app.route("/api/v1.0/aircrafts-data/callsign/<callsign>")
+# def api_aircrafts_callsign():
 
-    aircraft_hour = pd.read_sql(
-        f"""
-        SELECT 
-            COUNT(*) AS totalDataPoints,
-            FROM_UNIXTIME(time, '%Y-%m-%d %H') AS timeData
-        FROM
-            {table_airplanes}
-        WHERE
-            longitude IS NOT NULL
-        GROUP BY FROM_UNIXTIME(time, '%Y-%m-%d %H');
-        """,
-         engine)
+#     aircraft_df = pd.read_sql(
+#         f"""
+#         SELECT 
+#             *
+#         FROM
+#             {table_airplanes}
+#         WHERE
+#             longitude IS NOT NULL
+#         AND
+#             callsign = '{str(callsign)}';
+#         """,
+#          engine)
 
-    result = aircraft_hour.to_json(orient="records")
-    parsed = json.loads(result)
-    return jsonify(parsed)
+#     result = aircraft_df.to_json(orient="records")
+#     parsed = json.loads(result)
+#     return jsonify(parsed)
+
+
+# # Return a json with the query results for the aircrafts table for a specific callsign
+# @app.route("/api/v1.0/aircrafts-data/byhour")
+# def api_aircrafts_byhour():
+
+#     aircraft_hour = pd.read_sql(
+#         f"""
+#         SELECT 
+#             COUNT(*) AS totalDataPoints,
+#             FROM_UNIXTIME(time, '%Y-%m-%d %H') AS timeData
+#         FROM
+#             {table_airplanes}
+#         WHERE
+#             longitude IS NOT NULL
+#         GROUP BY FROM_UNIXTIME(time, '%Y-%m-%d %H');
+#         """,
+#          engine)
+
+#     result = aircraft_hour.to_json(orient="records")
+#     parsed = json.loads(result)
+#     return jsonify(parsed)
 
 # The server is set to run on the computer IP address on the port 5100
 # Go to your http://ipaddress:5100
