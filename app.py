@@ -42,8 +42,7 @@ airportData = "airportData"
 
 # MySQL specific connection string
 
-connection_string = f"{pg_user}:{pg_pass}@{pg_host}/{db_name}"
-engine = create_engine(f'postgresql://{connection_string}')
+engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}/{db_name}')
 
 
 # Query database for airport data that will be always the same
