@@ -4,7 +4,7 @@ import os
 import json
 from datetime import date
 from pprint import pprint
-import psycopg2
+
 import requests
 import csv
 
