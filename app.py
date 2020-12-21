@@ -20,7 +20,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, and_
 from api_keys import database_uri
 from werkzeug.middleware.proxy_fix import ProxyFix
-app.wsgi_app = ProxyFix(app.wsgi_app)
+# app.wsgi_app = ProxyFix(app.wsgi_app)
 
 
 ## # Import database user and password
@@ -64,6 +64,7 @@ with open(jsonpath) as f:
 # Flask Setup
 #################################################
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 
 #################################################
