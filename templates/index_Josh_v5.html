@@ -12,7 +12,7 @@
                         <a class="nav-link" href="/">Home</a><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/Josh">Aircraft Map</a>
+                        <a class="nav-link" href="/Josh">Airport Map</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/weather">Weather Stats</a>
@@ -71,24 +71,7 @@ crossorigin="anonymous"></script>
  <!-- Turf.js -->
     <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
- 
-  </div>
+   
 </head>
 
 
@@ -118,41 +101,13 @@ crossorigin="anonymous"></script>
     <!-- Canvas for ChartsJS plot -->
     <canvas id="myChart" width="300" height="100"></canvas>
   </div>
-  <div class="container">
-    <div id="wmap"></div> 
-  </div>
   
-</body>
-<body>
-    <h3>Weather Radar</h3>
-            
-        <div style="height: 100%" id="wmap"></div>
-
-                <script type="text/javascript">
-
-                        var map = L.map("wmap").setView([40.37, -100.12], 4);
-
-                        var osmAttribution =
-                                '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-                        var leafletRadarAttribution =
-                                '<a href="https://github.com/rwev/leaflet-radar">Radar</a>';
-
-                        L.tileLayer(
-                                "https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-                                {
-                                        attribution: [
-                                                osmAttribution,
-                                                leafletRadarAttribution
-                                        ].join(" | ")
-                                }
-                        ).addTo(map);
-                        L.control.radar({}).addTo(map);
-
-                </script>
-        </div>        
+  
+  
+ 
 </body>
       <!-- API key -->
-      <script type="text/javascript" src="static/js/config_v2.js"></script>
+    <script type="text/javascript" src="static/js/config_v2.js"></script>
       <!-- JS -->
  
       
