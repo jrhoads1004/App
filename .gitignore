@@ -3,4 +3,5 @@ api_keys.py
 config.js
 config_v2.js
 config.py
-__pycache
+__pycache__
+.ipynb_checkpoints
